@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daycare Planner</title>
+</head>
+<body>
+    <h1>Daycare Planner</h1>
+    <h2>Parents</h2>
+    <ul>
+        {% for parent in parents %}
+        <li>{{ parent.name }} - {{ parent.kidsName }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Children</h2>
+    <ul>
+        {% for child in children %}
+        <li>{{ child.name }} - Age: {{ child.age }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Employees</h2>
+    <ul>
+        {% for employee in employees %}
+        <li>{{ employee.name }} - Position: {{ employee.position }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

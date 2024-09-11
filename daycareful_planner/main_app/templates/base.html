@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daycareful Planner</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Daycareful Planner</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'parent_list' %}">Parents</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        <!-- Content overridden in child templates -->
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2023 Daycareful Planner. All rights reserved.</p>
+    </footer>
+</body>
+</html>

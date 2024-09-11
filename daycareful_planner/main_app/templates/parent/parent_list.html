@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Parent List</h2>
+  <a href="{% url 'parent_create' %}">Add New Parent</a>
+  <ul>
+    {% for parent in parents %}
+      <li>
+        {{ parent.name }} ({{ parent.kidsName }})
+        - <a href="{% url 'parent_detail' id=parent.id %}">View</a>
+        - <a href="{% url 'parent_edit' id=parent.id %}">Edit</a>
+        - <a href="{% url 'parent_delete' id=parent.id %}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

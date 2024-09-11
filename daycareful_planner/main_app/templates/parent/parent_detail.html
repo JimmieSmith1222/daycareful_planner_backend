@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Parent Details</h2>
+  <p>Name: {{ parent.name }}</p>
+  <p>Kids' Names: {{ parent.kidsName }}</p>
+  <p>Paid: {{ parent.paid }}</p>
+  <p>Attendance: {{ parent.attendance }}</p>
+
+  <a href="{% url 'parent_edit' id=parent.id %}">Edit</a>
+  <a href="{% url 'parent_delete' id=parent.id %}">Delete</a>
+  <a href="{% url 'parent_list' %}">Back to List</a>
+{% endblock %}

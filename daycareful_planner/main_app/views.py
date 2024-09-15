@@ -2,15 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import ParentInfo, ChildInfo, EmployeeInfo
 from .forms import ParentForm, ChildForm, EmployeeForm
 
-#def index(request):
-#    parents = ParentInfo.objects.all()
-#    children = ChildInfo.objects.all()
-#    employees = EmployeeInfo.objects.all()
-#    return render(request, 'index.html', {
-#        'parents': parents,
-#        'children': children,
-#        'employees': employees
-#    })
+def home(request):
+    return render(request, 'home.html')
 
 def parent_list(request):
     parents = ParentInfo.objects.all()
@@ -25,7 +18,7 @@ def parent_create(request):
         form = ParentForm(request.POST)
         if form.is_valid():
             parent = form.save()
-            return redirect('parent_detail', id=parent.id)
+            return redirect('parent_list')
     else:
         form = ParentForm()
     return render(request, 'parent/parent_form.html', {'form': form})
@@ -61,7 +54,7 @@ def child_create(request):
         form = ChildForm(request.POST)
         if form.is_valid():
             child = form.save()
-            return redirect('child_detail', id=child.id)
+            return redirect('child_list')
     else:
         form = ChildForm()
     return render(request, 'child/child_form.html', {'form': form})
@@ -97,7 +90,7 @@ def employee_create(request):
         form = EmployeeForm(request.POST)
         if form.is_valid():
             employee = form.save()
-            return redirect('employee_detail', id=employee.id)
+            return redirect('employee_list')
     else:
         form = EmployeeForm()
     return render(request, 'employee/employee_form.html', {'form': form})

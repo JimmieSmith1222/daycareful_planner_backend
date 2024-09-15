@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Employee Details</h2>
+  <p>Name: {{ employee.name }}</p>
+  <p>Hours: {{ employee.hours }}</p>
+  <p>Attendance: {{ employee.attendance }}</p>
+  <p>Pay: {{ employee.pay }}</p>
+  <p>Position: {{ employee.position }}</p>
+
+  <a href="{% url 'employee_edit' employee.id %}">Edit</a> |
+  <a href="{% url 'employee_delete' employee.id %}">Delete</a> |
+  <a href="{% url 'employee_list' %}">Back to List</a>
+{% endblock %}

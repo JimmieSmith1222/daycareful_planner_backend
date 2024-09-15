@@ -1,5 +1,5 @@
 from django import forms
-from .models import ParentInfo, ChildInfo
+from .models import ParentInfo, ChildInfo, EmployeeInfo
 
 class ParentForm(forms.ModelForm):
     class Meta:
@@ -11,3 +11,7 @@ class ChildForm(forms.ModelForm):
         model = ChildInfo
         fields = ['name', 'age', 'allergies']
 
+class EmployeeForm(forms.ModelForm):
+    class Meta:
+        model = EmployeeInfo
+        fields = ['name', 'hours', 'attendance', 'pay', 'position']

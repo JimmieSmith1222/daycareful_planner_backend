@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import ParentInfo, ChildInfo
-from .forms import ParentForm, ChildForm
+from .models import ParentInfo, ChildInfo, EmployeeInfo
+from .forms import ParentForm, ChildForm, EmployeeForm
 
 #def index(request):
 #    parents = ParentInfo.objects.all()
@@ -83,3 +83,39 @@ def child_delete(request, id):
         child.delete()
         return redirect('child_list')
     return render(request, 'child/child_confirm_delete.html', {'child': child})
+
+def employee_list(request):
+    employees = EmployeeInfo.objects.all()
+    return render(request, 'employee/employee_list.html', {'employees': employees})
+
+def employee_detail(request, id):
+    employee = get_object_or_404(EmployeeInfo, id=id)
+    return render(request, 'employee/employee_detail.html', {'employee': employee})
+
+def employee_create(request):
+    if request.method == "POST":
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            employee = form.save()
+            return redirect('employee_detail', id=employee.id)
+    else:
+        form = EmployeeForm()
+    return render(request, 'employee/employee_form.html', {'form': form})
+
+def employee_edit(request, id):
+    employee = get_object_or_404(EmployeeInfo, id=id)
+    if request.method == "POST":
+        form = EmployeeForm(request.POST, instance=employee)
+        if form.is_valid():
+            employee = form.save()
+            return redirect('employee_detail', id=employee.id)
+    else:
+        form = EmployeeForm(instance=employee)
+    return render(request, 'employee/employee_form.html', {'form': form})
+
+def employee_delete(request, id):
+    employee = get_object_or_404(EmployeeInfo, id=id)
+    if request.method == "POST":
+        employee.delete()
+        return redirect('employee_list')
+    return render(request, 'employee/employee_confirm_delete.html', {'employee': employee})

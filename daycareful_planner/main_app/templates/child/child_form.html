@@ -2,9 +2,10 @@
 
 {% block content %}
   <h2>{% if form.instance.pk %}Edit Child{% else %}Add New Child{% endif %}</h2>
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
+    <input type="file" name="image" accept="image/*">
     <button type="submit">Save</button>
   </form>
   <a href="{% url 'child_list' %}">Cancel</a>

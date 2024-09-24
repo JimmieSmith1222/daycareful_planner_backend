@@ -18,9 +18,9 @@ def parent_detail(request, id):
 
 def parent_create(request):
     if request.method == "POST":
-        form = ParentForm(request.POST)
+        form = ParentForm(request.POST, request.FILES)
         if form.is_valid():
-            parent = form.save()
+            form.save()
             return redirect('parent_list')
     else:
         form = ParentForm()
@@ -55,9 +55,9 @@ def child_detail(request, id):
 
 def child_create(request):
     if request.method == "POST":
-        form = ChildForm(request.POST)
+        form = ChildForm(request.POST, request.FILES)
         if form.is_valid():
-            child = form.save()
+            form.save()
             return redirect('child_list')
     else:
         form = ChildForm()
@@ -92,9 +92,9 @@ def employee_detail(request, id):
 
 def employee_create(request):
     if request.method == "POST":
-        form = EmployeeForm(request.POST)
+        form = EmployeeForm(request.POST, request.FILES)
         if form.is_valid():
-            employee = form.save()
+            form.save()
             return redirect('employee_list')
     else:
         form = EmployeeForm()

@@ -13,6 +13,14 @@ body {
     background-color: #636363 !important;
     color: #ffffff !important;
   }
+
+  h1 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
   
   main {
     flex: 1 0 auto !important;
@@ -52,4 +60,17 @@ body {
 
 td {
     text-align: center !important;
+}
+
+button {
+  padding: 8px 16px !important;
+  background-color: #007BFF !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+}
+
+button:hover {
+  background-color: #0056b3 !important;
 }

@@ -1,10 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import ParentInfo, ChildInfo, EmployeeInfo
 from .forms import ParentForm, ChildForm, EmployeeForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def home(request):
     return render(request, 'home.html')
 
+@login_required
 def parent_list(request):
     parents = ParentInfo.objects.all()
     return render(request, 'parent/parent_list.html', {'parents': parents})
@@ -41,6 +44,7 @@ def parent_delete(request, id):
         return redirect('parent_list')
     return render(request, 'parent/parent_confirm_delete.html', {'parent': parent})
 
+@login_required
 def child_list(request):
     children = ChildInfo.objects.all()
     return render(request, 'child/child_list.html', {'children': children})
@@ -77,6 +81,7 @@ def child_delete(request, id):
         return redirect('child_list')
     return render(request, 'child/child_confirm_delete.html', {'child': child})
 
+@login_required
 def employee_list(request):
     employees = EmployeeInfo.objects.all()
     return render(request, 'employee/employee_list.html', {'employees': employees})

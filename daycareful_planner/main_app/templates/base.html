@@ -18,7 +18,16 @@
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'parent_list' %}">Parents</a></li>
                 <li><a href="{% url 'child_list' %}">Children</a></li>
-                <li><a href="{% url 'employee_list' %}">Employees</a>
+                <li><a href="{% url 'employee_list' %}">Employees</a></li>
+                {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
                 
             </ul>
         </nav>

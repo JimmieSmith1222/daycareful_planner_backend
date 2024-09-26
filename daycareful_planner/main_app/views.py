@@ -1,3 +1,6 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import ParentInfo, ChildInfo, EmployeeInfo
 from .forms import ParentForm, ChildForm, EmployeeForm
@@ -9,23 +12,28 @@ def home(request):
 
 @login_required
 def parent_list(request):
-    parents = ParentInfo.objects.all()
+    parents = ParentInfo.objects.filter(user=request.user)
     return render(request, 'parent/parent_list.html', {'parents': parents})
 
+@login_required
 def parent_detail(request, id):
     parent = get_object_or_404(ParentInfo, id=id)
     return render(request, 'parent/parent_detail.html', {'parent': parent})
 
+@login_required
 def parent_create(request):
     if request.method == "POST":
         form = ParentForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            parent_info = form.save(commit=False)
+            parent_info.user = request.user
+            parent_info.save()
             return redirect('parent_list')
     else:
         form = ParentForm()
     return render(request, 'parent/parent_form.html', {'form': form})
 
+@login_required
 def parent_edit(request, id):
     parent = get_object_or_404(ParentInfo, id=id)
     if request.method == "POST":
@@ -37,6 +45,7 @@ def parent_edit(request, id):
         form = ParentForm(instance=parent)
     return render(request, 'parent/parent_form.html', {'form': form})
 
+@login_required
 def parent_delete(request, id):
     parent = get_object_or_404(ParentInfo, id=id)
     if request.method == "POST":
@@ -46,13 +55,15 @@ def parent_delete(request, id):
 
 @login_required
 def child_list(request):
-    children = ChildInfo.objects.all()
+    children = ChildInfo.objects.filter(user=request.user)
     return render(request, 'child/child_list.html', {'children': children})
 
+@login_required
 def child_detail(request, id):
     child = get_object_or_404(ChildInfo, id=id)
     return render(request, 'child/child_detail.html', {'child': child})
 
+@login_required
 def child_create(request):
     if request.method == "POST":
         form = ChildForm(request.POST, request.FILES)
@@ -63,6 +74,7 @@ def child_create(request):
         form = ChildForm()
     return render(request, 'child/child_form.html', {'form': form})
 
+@login_required
 def child_edit(request, id):
     child = get_object_or_404(ChildInfo, id=id)
     if request.method == "POST":
@@ -74,6 +86,7 @@ def child_edit(request, id):
         form = ChildForm(instance=child)
     return render(request, 'child/child_form.html', {'form': form})
 
+@login_required
 def child_delete(request, id):
     child = get_object_or_404(ChildInfo, id=id)
     if request.method == "POST":
@@ -83,13 +96,15 @@ def child_delete(request, id):
 
 @login_required
 def employee_list(request):
-    employees = EmployeeInfo.objects.all()
+    employees = EmployeeInfo.objects.filter(user=request.user)
     return render(request, 'employee/employee_list.html', {'employees': employees})
 
+@login_required
 def employee_detail(request, id):
     employee = get_object_or_404(EmployeeInfo, id=id)
     return render(request, 'employee/employee_detail.html', {'employee': employee})
 
+@login_required
 def employee_create(request):
     if request.method == "POST":
         form = EmployeeForm(request.POST, request.FILES)
@@ -100,6 +115,7 @@ def employee_create(request):
         form = EmployeeForm()
     return render(request, 'employee/employee_form.html', {'form': form})
 
+@login_required
 def employee_edit(request, id):
     employee = get_object_or_404(EmployeeInfo, id=id)
     if request.method == "POST":
@@ -111,9 +127,15 @@ def employee_edit(request, id):
         form = EmployeeForm(instance=employee)
     return render(request, 'employee/employee_form.html', {'form': form})
 
+@login_required
 def employee_delete(request, id):
     employee = get_object_or_404(EmployeeInfo, id=id)
     if request.method == "POST":
         employee.delete()
         return redirect('employee_list')
     return render(request, 'employee/employee_confirm_delete.html', {'employee': employee})
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'signup.html'

@@ -15,11 +15,13 @@ body {
   }
 
   h1 {
-    text-align: center;
+    text-align: center !important;
+    color: #000000;
   }
 
   p {
-    text-align: center;
+    text-align: center !important;
+    color: #ffffff;
   }
   
   main {
@@ -73,4 +75,9 @@ button {
 
 button:hover {
   background-color: #0056b3 !important;
+}
+
+div.card-content {
+  color: #000000 !important;
+  background-color: #ffffff !important;
 }

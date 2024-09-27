@@ -39,7 +39,9 @@ def parent_edit(request, id):
     if request.method == "POST":
         form = ParentForm(request.POST, instance=parent)
         if form.is_valid():
-            parent = form.save()
+            parent_info = form.save(commit=False)
+            parent_info.user = parent.user
+            parent_info.save()
             return redirect('parent_detail', id=parent.id)
     else:
         form = ParentForm(instance=parent)
@@ -68,7 +70,9 @@ def child_create(request):
     if request.method == "POST":
         form = ChildForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            child_info = form.save(commit=False)
+            child_info.user = request.user
+            child_info.save()
             return redirect('child_list')
     else:
         form = ChildForm()

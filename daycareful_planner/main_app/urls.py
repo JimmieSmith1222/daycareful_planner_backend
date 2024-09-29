@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import parent_list, parent_detail, parent_create, parent_edit, parent_delete, child_list, child_detail, child_create, child_edit, child_delete, employee_list, employee_create, employee_edit, employee_delete, employee_detail
+from .views import parent_list, parent_detail, parent_create, parent_edit, parent_delete, delete_parent_image, child_list, child_detail, child_create, child_edit, child_delete, employee_list, employee_create, employee_edit, employee_delete, employee_detail
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -9,6 +9,7 @@ urlpatterns = [
     path('parents/new/', views.parent_create, name='parent_create'),
     path('parents/<int:id>/edit/', views.parent_edit, name='parent_edit'),
     path('parents/<int:id>/delete/', views.parent_delete, name='parent_delete'),
+    path('parents/<int:id>/delete_image/', delete_parent_image, name='delete_parent_image'),
     path('children/', child_list, name='child_list'),
     path('children/<int:id>/', child_detail, name='child_detail'),
     path('children/add/', child_create, name='child_create'),

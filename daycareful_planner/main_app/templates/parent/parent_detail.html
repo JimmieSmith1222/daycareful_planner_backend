@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Parent Details</h2>
+  <h2>Parent Details: {{ parent.name }}</h2>
+  {% if parent.image %}
+  <div class="image-container">
+    <img src="{{ parent.image.url }}" alt="Image of {{ parent.name }}">
+    <a href="{% url 'delete_parent_image' id=parent.id %}">Delete Image</a>
+  </div>
+{% else %}
+  <p>No image available.</p>
+{% endif %}
   <p>Name: {{ parent.name }}</p>
   <p>Kids' Names: {{ parent.kidsName }}</p>
   <p>Paid: {{ parent.paid }}</p>

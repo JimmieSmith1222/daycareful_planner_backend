@@ -81,3 +81,10 @@ div.card-content {
   color: #000000 !important;
   background-color: #ffffff !important;
 }
+
+.image-container img {
+  display: block !important;
+  margin: 0 auto !important;
+  max-width: 200px !important;
+  height: auto !important;
+}

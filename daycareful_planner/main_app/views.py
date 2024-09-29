@@ -37,8 +37,11 @@ def parent_create(request):
 def parent_edit(request, id):
     parent = get_object_or_404(ParentInfo, id=id)
     if request.method == "POST":
-        form = ParentForm(request.POST, instance=parent)
+        form = ParentForm(request.POST, request.FILES, instance=parent)
         if form.is_valid():
+            if 'delete_image' in request.POST and request.POST['delete_image'] == 'on':
+                parent.image.delete()
+                parent.image = None
             parent_info = form.save(commit=False)
             parent_info.user = parent.user
             parent_info.save()
@@ -54,6 +57,16 @@ def parent_delete(request, id):
         parent.delete()
         return redirect('parent_list')
     return render(request, 'parent/parent_confirm_delete.html', {'parent': parent})
+
+@login_required
+def delete_parent_image(request, id):
+    parent = get_object_or_404(ParentInfo, id=id)
+    if request.method == 'POST':
+        parent.image.delete()
+        parent.image = None
+        parent.save()
+        return redirect('parent_detail', id=id)
+    return render(request, 'parent/confirm_delete_image.html', {'parent': parent})
 
 @login_required
 def child_list(request):

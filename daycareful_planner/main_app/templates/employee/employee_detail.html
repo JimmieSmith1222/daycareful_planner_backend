@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Employee Details</h2>
+  <h2>Employee Details: {{ employee.name }}</h2>
+  {% if employee.image %}
+  <div class="image-container">
+    <img src="{{ employee.image.url }}" alt="Image of {{ employee.name }}">
+  </div>
+{% else %}
+  <p>No image available.</p>
+{% endif %}</h2>
   <p>Name: {{ employee.name }}</p>
   <p>Hours: {{ employee.hours }}</p>
   <p>Attendance: {{ employee.attendance }}</p>

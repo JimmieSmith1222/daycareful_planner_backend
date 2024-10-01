@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Welcome to Daycareful Planner</h1>
+  <p>This is the home page of the Daycareful Planner. Navigate through the site using the links above.</p>
+  
+  <div id="calendar-container">
+    <div class="calendar-header">
+      <button onclick="changeMonth(-1)">&#10094;</button>
+      <h3 id="monthYear"></h3>
+      <button onclick="changeMonth(1)">&#10095;</button>
+    </div>
+    <table id="calendar">
+      <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </thead>
+      <tbody onclick="dayClicked(event)">
+      </tbody>
+    </table>
+  </div>
+
+  <div id="eventModal" style="display:none;">
+    <input type="text" id="eventText" placeholder="Event Description">
+    <button onclick="saveEvent()">Save Event</button>
+    <button onclick="closeModal()">Cancel</button>
+  </div>
+
+  <script>
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+    let events = JSON.parse(localStorage.getItem('events')) || {};
+
+    function createCalendar(year, month) {
+      let dayCount = new Date(year, month + 1, 0).getDate();
+      let startDay = new Date(year, month, 1).getDay();
+      let calendar = document.getElementById('calendar').getElementsByTagName('tbody')[0];
+      calendar.innerHTML = '';
+
+      let date = 1;
+      for (let i = 0; i < 6; i++) {
+        let row = document.createElement('tr');
+        for (let j = 0; j < 7; j++) {
+          let cell = document.createElement('td');
+          if (i === 0 && j < startDay) {
+            cell.appendChild(document.createTextNode(''));
+          } else if (date > dayCount) {
+            break;
+          } else {
+            cell.appendChild(document.createTextNode(date));
+            if (events[`${year}-${month + 1}-${date}`]) {
+              let eventDiv = document.createElement('div');
+              eventDiv.textContent = events[`${year}-${month + 1}-${date}`];
+              cell.appendChild(eventDiv);
+            }
+            cell.setAttribute('data-date', `${year}-${month + 1}-${date}`);
+            date++;
+          }
+          row.appendChild(cell);
+        }
+        calendar.appendChild(row);
+      }
+    }
+
+    function updateMonthYearDisplay() {
+      let monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+      document.getElementById('monthYear').textContent = monthNames[currentMonth] + ' ' + currentYear;
+      createCalendar(currentYear, currentMonth);
+    }
+
+    function changeMonth(step) {
+      currentMonth += step;
+      if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+      } else if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+      }
+      updateMonthYearDisplay();
+    }
+
+    function dayClicked(event) {
+      if (event.target.tagName === 'TD' && event.target.getAttribute('data-date')) {
+        let selectedDate = event.target.getAttribute('data-date');
+        document.getElementById('eventModal').style.display = 'block';
+        document.getElementById('eventText').value = events[selectedDate] || '';
+        document.getElementById('eventText').setAttribute('data-date', selectedDate);
+      }
+    }
+
+    function saveEvent() {
+      let eventText = document.getElementById('eventText');
+      let date = eventText.getAttribute('data-date');
+      if (eventText.value) {
+        events[date] = eventText.value;
+        localStorage.setItem('events', JSON.stringify(events));
+      } else {
+        delete events[date];
+        localStorage.removeItem('events');
+      }
+      closeModal();
+      updateMonthYearDisplay();
+    }
+
+    function closeModal() {
+      document.getElementById('eventModal').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      updateMonthYearDisplay();
+    });
+  </script>
+{% endblock %}

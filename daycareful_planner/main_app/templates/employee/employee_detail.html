@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Employee Details: {{ employee.name }}</h2>
+  {% if employee.image %}
+  <div class="image-container">
+    <img src="{{ employee.image.url }}" alt="Image of {{ employee.name }}">
+  </div>
+{% else %}
+  <p>No image available.</p>
+{% endif %}</h2>
+  <p>Name: {{ employee.name }}</p>
+  <p>Hours: {{ employee.hours }}</p>
+  <p>Attendance: {{ employee.attendance }}</p>
+  <p>Pay: {{ employee.pay }}</p>
+  <p>Position: {{ employee.position }}</p>
+
+  <a href="{% url 'employee_edit' employee.id %}">Edit</a> |
+  <a href="{% url 'employee_delete' employee.id %}">Delete</a> |
+  <a href="{% url 'employee_list' %}">Back to List</a>
+{% endblock %}

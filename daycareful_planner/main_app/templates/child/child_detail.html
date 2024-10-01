@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Child Details: {{ child.name }}</h2>
+  {% if child.image %}
+  <div class="image-container">
+    <img src="{{ child.image.url }}" alt="Image of {{ child.name }}">
+  </div>
+{% else %}
+  <p>No image available.</p>
+{% endif %}
+  <p>Age: {{ child.age }}</p>
+  <p>Allergies: {{ child.allergies }}</p>
+  <a href="{% url 'child_edit' child.id %}">Edit</a> |
+  <a href="{% url 'child_delete' child.id %}">Delete</a> |
+  <a href="{% url 'child_list' %}">Back to List</a>
+{% endblock %}

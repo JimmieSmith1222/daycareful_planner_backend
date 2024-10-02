@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="center-screen">
   <h2>Are you sure you want to delete "{{ child.name }}"?</h2>
-  <form method="post">
+  <div class="action-buttons">
+  <form method="post"  class="center-form">
     {% csrf_token %}
-    <button type="submit">Yes, delete</button>
+    <button type="submit" class="btn waves-effect waves-light">Yes, delete</button>
   </form>
-  <a href="{% url 'child_detail' child.id %}">Cancel</a>
+  <a href="{% url 'child_detail' child.id %}" class="btn waves-effect waves-light">Cancel</a>
+  </div>
+</div>
 {% endblock %}

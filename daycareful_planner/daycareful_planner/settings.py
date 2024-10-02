@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-4e7tlt-8d$ns3f@um1gf91(g+t(o*a2hx6qsbs=$f2a(5wl_4l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [https://daycareful-planner-backend.onrender.com]
+ALLOWED_HOSTS = ['https://daycareful-planner-backend.onrender.com']
 
 
 # Application definition

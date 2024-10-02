@@ -32,11 +32,18 @@ footer {
   text-align: center !important;
   background-color: #00264d !important;
   color: #ffffff !important;
-  padding: 10px 0 !important;
+  padding: 10px -10px !important;
 }
 
 footer .container {
   text-align: center !important;
+}
+
+footer .copyfooter {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 footer .container .row {
@@ -159,7 +166,7 @@ form .field select {
 }
 
 .card {
-  margin: 10px !important;
+  margin: 10px 0 !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
   width: 100% !important;
 }
@@ -204,8 +211,12 @@ form .field select {
   display: flex !important;
   justify-content: center !important;
   margin-bottom: 20px !important;
-  padding: 0 15px !important;
+  padding: 0 10px !important;
   box-sizing: border-box !important;
+  max-width: 33.333% !important;
+  min-width: 300px;
+  flex-grow: 1 !important;
+  flex-basis: 33.333% !important;
 }
 
 .btn {

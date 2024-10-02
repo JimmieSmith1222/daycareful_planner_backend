@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render, get_object_or_404, redirect
@@ -157,6 +158,11 @@ def employee_delete(request, id):
         employee.delete()
         return redirect('employee_list')
     return render(request, 'employee/employee_confirm_delete.html', {'employee': employee})
+
+def custom_logout(request):
+    print("Logout view triggered")
+    logout(request)
+    return redirect('/')
 
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm

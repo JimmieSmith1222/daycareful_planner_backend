@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="center-screen">
+<div class="center-form">
   <h2>{% if form.instance.pk %}Edit Child{% else %}Add New Child{% endif %}</h2>
-  <form method="post" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data" style="width: 50%; margin: auto;">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save</button>
+    <div class="right-align">
+    <button type="submit" class="btn waves-effect waves-light">Save</button>
   </form>
-  <a href="{% url 'child_list' %}">Cancel</a>
+  <a href="{% url 'child_list' %}" class="btn waves-effect waves-light">Cancel</a>
+</div>
+</div>
 {% endblock %}

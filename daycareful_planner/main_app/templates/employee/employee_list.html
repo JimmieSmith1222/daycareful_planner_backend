@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="center-content">
   <h2>Employee List</h2>
   <a href="{% url 'employee_create' %}" class="btn">Add New Employee</a>
   <div class="row">
+  <ul>
     {% for employee in employees %}
     <div class="col s12 m6 l4">
       <div class="card">
@@ -12,12 +14,13 @@
           <p>Position: {{ employee.position }}</p>
           </div>
           <div class="card-action">
-        <a href="{% url 'employee_detail' employee.id %}">View</a> | 
-        <a href="{% url 'employee_edit' employee.id %}">Edit</a> | 
-        <a href="{% url 'employee_delete' employee.id %}">Delete</a>
+            <a href="{% url 'employee_detail' employee.id %}" class="card-button">Details</a> | 
+            <a href="{% url 'employee_edit' employee.id %}" class="card-button">Edit</a> | 
+            <a href="{% url 'employee_delete' employee.id %}" class="card-button">Delete</a>
+        </div>
       </div>
     </div>
-  </div>
     {% endfor %}
   </div>
+</div>
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="center-content">
   <h2>Parent List</h2>
   <a href="{% url 'parent_create' %}" class="btn">>Add New Parent</a>
   <div class="row">
@@ -13,12 +14,13 @@
           <p>Kids: {{ parent.kidsName }}</p>
         </div>
         <div class="card-action">
-        - <a href="{% url 'parent_detail' id=parent.id %}">View</a>
-        - <a href="{% url 'parent_edit' id=parent.id %}">Edit</a>
-        - <a href="{% url 'parent_delete' id=parent.id %}">Delete</a>
+          <a href="{% url 'parent_detail' id=parent.id %}" class="card-button">Details</a>
+          <a href="{% url 'parent_edit' id=parent.id %}" class="card-button">Edit</a>
+          <a href="{% url 'parent_delete' id=parent.id %}" class="card-button">Delete</a>
       </div>
     </div>
   </div>
     {% endfor %}
   </div>
+</div>
 {% endblock %}

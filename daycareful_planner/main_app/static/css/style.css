@@ -7,32 +7,32 @@ nav a {
 }
 
 body {
-    display: flex !important;
-    min-height: 100vh !important;
-    flex-direction: column !important;
-    background-color: #636363 !important;
-    color: #ffffff !important;
-  }
+  display: flex !important;
+  min-height: 100vh !important;
+  flex-direction: column !important;
+  background-color: #636363 !important;
+  color: #ffffff !important;
+}
 
-  h1 {
-    text-align: center !important;
-    color: #000000;
-  }
+h1 {
+  text-align: center !important;
+  color: #000000;
+}
 
-  p {
-    text-align: center !important;
-    color: #ffffff;
-  }
-  
-  main {
-    flex: 1 0 auto !important;
-  }
-  
-  footer {
-    text-align: center !important;
-    background-color: #00264d !important;
-    color: #ffffff !important;
-    padding: 10px 0 !important;
+p {
+  text-align: center !important;
+  color: #ffffff;
+}
+
+main {
+  flex: 1 0 auto !important;
+}
+
+footer {
+  text-align: center !important;
+  background-color: #00264d !important;
+  color: #ffffff !important;
+  padding: 10px 0 !important;
 }
 
 footer .container {
@@ -50,18 +50,33 @@ footer .container .row .col {
   text-align: center !important;
 }
 
-  #calendar-container {
-    width: 60% !important;
-    margin: 0 auto !important;
-    padding: 20px !important;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1) !important;
+#calendar-container {
+  width: 60% !important;
+  margin: 0 auto !important;
+  padding: 20px !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+#eventText {
+  width: 100% !important;
+  padding: 8px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  text-align: center !important;
+}
+
+.modal-buttons {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
 }
 
 #calendar {
-    width: 100% !important;
-    table-layout: fixed !important;
-    min-height: 500px !important;
-    height: auto !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+  min-height: 500px !important;
+  height: auto !important;
 }
 
 #calendar td {
@@ -71,12 +86,12 @@ footer .container .row .col {
 }
 
 .calendar-header {
-    text-align: center !important;
-    margin-bottom: 20px !important;
+  text-align: center !important;
+  margin-bottom: 20px !important;
 }
 
 td {
-    text-align: center !important;
+  text-align: center !important;
 }
 
 button {
@@ -102,4 +117,178 @@ div.card-content {
   margin: 0 auto !important;
   max-width: 200px !important;
   height: auto !important;
+}
+
+form {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+form .field {
+  margin-bottom: 10px !important;
+  width: 100% !important;
+}
+
+form .field label,
+form .field input,
+form .field select {
+  width: 100% !important;
+  text-align: center;
+}
+
+.center-form {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 80vh !important;
+}
+
+.center-form form {
+  width: 100% !important;
+  max-width: 500px !important;
+}
+
+.center-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-top: 20px !important;
+}
+
+.card {
+  margin: 10px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  width: 100% !important;
+}
+
+.card-button {
+  display: inline-block !important;
+  padding: 8px 16px !important;
+  margin: 5px !important;
+  background-color: #007BFF !important;
+  color: white !important;
+  text-decoration: none !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.card-button:hover {
+  background-color: #0056b3 !important;
+}
+
+.card-content {
+  padding: 20px !important;
+  text-align: center !important;
+}
+
+.card-action {
+  border-top: 1px solid #eee !important;
+  padding: 10px 20px !important;
+  text-align: center !important;
+}
+
+.row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin: 0 -10px !important;
+}
+
+.col {
+  display: flex !important;
+  justify-content: center !important;
+  margin-bottom: 20px !important;
+  padding: 0 15px !important;
+  box-sizing: border-box !important;
+}
+
+.btn {
+  display: inline-block !important;
+  margin: 20px !important;
+  background-color: #007BFF !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  text-decoration: none !important;
+  border-radius: 5px !important;
+  text-align: center !important;
+  line-height: normal !important;
+  vertical-align: middle !important;
+  border: none !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+.btn:hover {
+  background-color: #0056b3 !important;
+}
+
+.action-links {
+  text-align: center !important;
+  margin-top: 20px !important;
+  padding: 10px !important;
+}
+
+.action-links a {
+  margin: 0 10px !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.action-links a:hover {
+  color: #ffffff !important;
+}
+
+.action-buttons {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 10px !important;
+}
+
+.center-screen {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+}
+
+.center-form {
+  width: 100% !important;
+  max-width: 800px !important;
+  margin: 0 !important;
+  padding: 20px !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="number"],
+form textarea {
+    width: 100% !important;
+    padding: 8px !important;
+    margin: 5px 0 !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: #007BFF !important;
+    outline: none !important;
 }

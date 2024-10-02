@@ -28,9 +28,14 @@
   </div>
 
   <div id="eventModal" style="display:none;">
+    <div class="input-container">
     <input type="text" id="eventText" placeholder="Event Description">
+    <div class="modal-buttons">
     <button onclick="saveEvent()">Save Event</button>
+    <button onclick="deleteEvent()" id="deleteEventButton" style="display:none;">Delete Event</button>
     <button onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -96,8 +101,20 @@
         document.getElementById('eventModal').style.display = 'block';
         document.getElementById('eventText').value = events[selectedDate] || '';
         document.getElementById('eventText').setAttribute('data-date', selectedDate);
+        document.getElementById('deleteEventButton').style.display = events[selectedDate] ? 'block' : 'none';
       }
     }
+
+    function deleteEvent() {
+      let eventText = document.getElementById('eventText');
+      let date = eventText.getAttribute('data-date');
+      if (events[date]) {
+          delete events[date];
+          localStorage.setItem('events', JSON.stringify(events));
+          updateMonthYearDisplay();
+          closeModal();
+      }
+  }
 
     function saveEvent() {
       let eventText = document.getElementById('eventText');
